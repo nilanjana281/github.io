@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TaxCalc Case Study | Nilanjana Chatterjee</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#050816; --accent:#f9b234; --text:#f5f5f5; --muted:#a3aec5; --border:#262c40;
+      --max:900px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top,#131a35 0,#050816 55%,#02030a 100%);
+      color:var(--text);
+      line-height:1.65;
+    }
+    a{color:var(--accent);text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:26px 18px 60px}
+    .topbar{
+      display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+      padding:12px 0 18px;border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(255,255,255,.12);color:var(--muted);
+      padding:7px 12px;border-radius:999px;font-size:12px;
+      background:rgba(11,16,32,.65);
+    }
+    h1{margin:18px 0 8px;font-size:30px;line-height:1.2}
+    .subtitle{color:var(--muted);margin:0 0 18px}
+    .grid{display:grid;gap:12px;margin:18px 0}
+    .card{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:14px 14px 12px;
+      background:radial-gradient(circle at top left,#171d36,#050816);
+    }
+    .k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+    ul{margin:8px 0 0;padding:0;list-style:none}
+    li{margin:6px 0;color:#c5cee5;font-size:14px;padding-left:14px;position:relative}
+    li:before{content:"•";position:absolute;left:0;color:var(--accent);top:0}
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:13px;font-weight:650;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(11,16,32,.65);
+      color:var(--muted);
+    }
+    .btn.primary{
+      background:linear-gradient(135deg,#f9b234,#ff6f61);
+      color:#050816;border:none;
+    }
+    .small{font-size:12px;color:var(--muted)}
+    code{background:rgba(255,255,255,.06);padding:2px 6px;border-radius:8px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="pill" href="index.html#projects">← Back to Case Studies</a>
+      <span class="pill">B2B SaaS · Commerce Integrations · Strategy</span>
+    </div>
+
+    <h1>TaxCalc Carrier App Expansion</h1>
+    <p class="subtitle">
+      Expanding a cross-border tax & duty calculation engine from Shopify into Magento and Salesforce Commerce Cloud (SFCC),
+      while protecting fast merchant onboarding and reliability.
+    </p>
+
+    <div class="grid">
+      <section class="card">
+        <p class="k">Problem</p>
+        <ul>
+          <li>TaxCalc worked well in <strong>Shopify</strong>, but growth required expanding to <strong>Magento</strong> and <strong>SFCC</strong>.</li>
+          <li>Each platform has different checkout APIs, extensibility, and integration effort—risking longer onboarding and higher failure rates.</li>
+          <li>Goal: keep onboarding & implementation time low while ensuring consistent calculation accuracy across platforms.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <p class="k">My Role</p>
+        <ul>
+          <li>Product strategy + integration design: platform sequencing, scope definition, constraints mapping.</li>
+          <li>Wrote product requirements and integration approach for Magento + SFCC (basic vs extended pathways).</li>
+          <li>Partnered with engineering/architecture to standardize backend API contracts and reduce platform-specific complexity.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <p class="k">Approach</p>
+        <ul>
+          <li>Defined two integration modes: <strong>Basic</strong> (core shipping/tax/duty calculations) vs <strong>Extended</strong> (localized payments + deeper checkout customization).</li>
+          <li>Compared Shopify vs Magento vs SFCC on API maturity, checkout extension points, middleware needs, and effort.</li>
+          <li>Proposed a unified backend contract so the same service can serve all platforms with consistent payloads.</li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <p class="k">Outputs</p>
+        <ul>
+          <li>Integration pathways and sequencing plan (which platform first, and why).</li>
+          <li>High-level architecture and responsibilities (frontend plugin vs middleware vs backend).</li>
+          <li>Risk matrix: API constraints, merchant variability, implementation complexity, and mitigations.</li>
+        </ul>
+
+        <div class="ctaRow">
+          <!-- Update these links if you upload PDFs (Step 3 below) -->
+          <a class="btn primary" href="index.html#contact">Talk to me about integrations</a>
+          <a class="btn" href="#" onclick="alert('Upload your TaxCalc PDFs and then replace this link.'); return false;">View PRD (PDF)</a>
+          <a class="btn" href="#" onclick="alert('Upload your TaxCalc PDFs and then replace this link.'); return false;">View Case Study (PDF)</a>
+        </div>
+
+        <p class="small" style="margin-top:10px;">
+          Tip: once you upload the PDFs, replace the <code>href</code> in the buttons with the PDF filenames.
+        </p>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
