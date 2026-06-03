@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group Trip Planner — AI Product Concept | Nilanjana Chatterjee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1A2744;
+  --navy2: #243560;
+  --teal: #2A9D8F;
+  --teal2: #21867A;
+  --terra: #C4622D;
+  --cream: #FDFAF6;
+  --cream2: #F4F0EA;
+  --text: #1A1A1A;
+  --text2: #555550;
+  --text3: #888880;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  background: var(--navy);
+  padding: 0 40px;
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; color: #fff;
+  text-decoration: none; letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: rgba(255,255,255,0.75); font-size: 13px; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.4px; transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-back {
+  color: var(--teal); font-size: 13px; font-weight: 500;
+  text-decoration: none; display: flex; align-items: center; gap: 5px;
+}
+.nav-back:hover { color: #fff; }
+
+/* HERO */
+.hero {
+  background: var(--navy);
+  padding: 80px 40px 64px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(42,157,143,0.15) 0%, transparent 60%);
+}
+.hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 14px; border-radius: 20px;
+  background: rgba(42,157,143,0.15); border: 1px solid rgba(42,157,143,0.3);
+  font-size: 11px; font-weight: 600; color: var(--teal);
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 52px); font-weight: 700;
+  color: #fff; line-height: 1.15; margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em { color: var(--teal); font-style: italic; }
+.hero-sub {
+  font-size: 17px; color: rgba(255,255,255,0.7);
+  max-width: 620px; line-height: 1.7; margin-bottom: 36px;
+}
+.hero-meta { display: flex; gap: 32px; flex-wrap: wrap; }
+.hero-meta-item { }
+.hero-meta-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 4px;
+}
+.hero-meta-value { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; }
+
+/* CONTENT */
+.content { max-width: 860px; margin: 0 auto; padding: 64px 40px; }
+
+/* SECTION */
+.section { margin-bottom: 64px; }
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.section-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border2);
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px; font-weight: 700; color: var(--navy);
+  margin-bottom: 16px; line-height: 1.3; letter-spacing: -0.3px;
+}
+h3 {
+  font-size: 16px; font-weight: 600; color: var(--navy);
+  margin-bottom: 10px; margin-top: 24px;
+}
+p {
+  font-size: 15px; color: var(--text2); line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* CALLOUT */
+.callout {
+  border-left: 3px solid var(--teal);
+  background: rgba(42,157,143,0.06);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px; margin: 24px 0;
+}
+.callout-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+}
+.callout p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.7; }
+.callout strong { color: var(--navy); }
+
+/* INSIGHT BOX */
+.insight {
+  background: var(--navy);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px; margin: 28px 0;
+}
+.insight p {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; color: #fff; line-height: 1.6;
+  font-style: italic; margin: 0;
+}
+.insight em { color: var(--teal); font-style: normal; }
+
+/* STATS ROW */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 28px 0; }
+.stat {
+  background: var(--cream2); border-radius: var(--radius-lg);
+  padding: 20px 24px; border: 1px solid var(--border2);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 700; color: var(--navy);
+  margin-bottom: 4px; line-height: 1;
+}
+.stat-num span { color: var(--teal); }
+.stat-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+.card {
+  background: #fff; border: 1px solid var(--border2);
+  border-radius: var(--radius-lg); padding: 20px 24px;
+}
+.card-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text3); margin-bottom: 12px;
+}
+.card h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+.card p { font-size: 13px; color: var(--text2); margin: 0; line-height: 1.6; }
+
+/* PILL LIST */
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.pill {
+  padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+  background: var(--cream2); border: 1px solid var(--border2);
+  color: var(--text2);
+}
+.pill.teal { background: rgba(42,157,143,0.1); border-color: rgba(42,157,143,0.25); color: var(--teal2); }
+.pill.navy { background: rgba(26,39,68,0.08); border-color: rgba(26,39,68,0.15); color: var(--navy); }
+
+/* FLOW */
+.flow { margin: 24px 0; }
+.flow-step {
+  display: flex; gap: 16px; padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.flow-step:last-child { border-bottom: none; }
+.flow-num {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--navy); color: #fff;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.flow-content h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.flow-content p { font-size: 13px; color: var(--text2); margin: 0; line-height: 1.6; }
+
+/* METRICS TABLE */
+.metrics-table {
+  width: 100%; border-collapse: collapse; margin: 20px 0;
+  font-size: 13px;
+}
+.metrics-table th {
+  background: var(--navy); color: #fff;
+  padding: 10px 14px; text-align: left;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+}
+.metrics-table td {
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
+  color: var(--text2); vertical-align: top;
+}
+.metrics-table tr:nth-child(even) td { background: var(--cream2); }
+.metrics-table td:first-child { font-weight: 600; color: var(--navy); }
+
+/* TRADEOFF */
+.tradeoff {
+  background: #fff; border: 1px solid var(--border2);
+  border-radius: var(--radius-lg); padding: 20px 24px;
+  margin-bottom: 12px;
+}
+.tradeoff h4 {
+  font-size: 14px; font-weight: 600; color: var(--navy);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.tradeoff p { font-size: 13px; color: var(--text2); margin: 0; line-height: 1.65; }
+
+/* PROTOTYPE CTA */
+.prototype-cta {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: var(--radius-lg); padding: 40px 40px;
+  text-align: center; margin: 40px 0; position: relative; overflow: hidden;
+}
+.prototype-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 50%, rgba(42,157,143,0.2) 0%, transparent 60%);
+}
+.prototype-cta h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; color: #fff; margin-bottom: 10px;
+  position: relative;
+}
+.prototype-cta p {
+  font-size: 14px; color: rgba(255,255,255,0.7);
+  margin-bottom: 24px; position: relative;
+}
+.prototype-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: var(--radius);
+  background: var(--teal); color: #fff;
+  font-size: 14px; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+  position: relative;
+}
+.prototype-btn:hover { background: var(--teal2); transform: translateY(-1px); }
+
+/* ROADMAP */
+.roadmap { margin: 20px 0; }
+.roadmap-phase {
+  display: flex; gap: 20px; margin-bottom: 16px;
+}
+.roadmap-tag {
+  flex-shrink: 0; padding: 4px 12px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  white-space: nowrap; margin-top: 2px; height: fit-content;
+}
+.roadmap-tag.mvp { background: rgba(42,157,143,0.15); color: var(--teal2); }
+.roadmap-tag.p2 { background: rgba(26,39,68,0.1); color: var(--navy); }
+.roadmap-tag.p3 { background: rgba(196,98,45,0.1); color: var(--terra); }
+.roadmap-tag.p4 { background: var(--cream2); color: var(--text2); border: 1px solid var(--border2); }
+.roadmap-content h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.roadmap-content p { font-size: 13px; color: var(--text2); margin: 0; line-height: 1.6; }
+
+/* FOOTER */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.5);
+  text-align: center; padding: 32px 40px;
+  font-size: 13px;
+}
+footer a { color: var(--teal); text-decoration: none; }
+
+@media (max-width: 640px) {
+  nav { padding: 0 20px; }
+  .hero { padding: 48px 20px 40px; }
+  .content { padding: 40px 20px; }
+  .stats { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .hero-meta { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://nilanjana281.github.io" class="nav-logo">Nilanjana Chatterjee</a>
+  <div class="nav-links">
+    <a href="https://nilanjana281.github.io#casestudies">← Case Studies</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">✦ AI Product Concept · PRD + Prototype</div>
+    <h1>Group Travel Planning,<br><em>Reimagined with AI</em></h1>
+    <p class="hero-sub">A concept product exploring how agentic AI can solve the real problem in group travel — not finding options, but reaching a decision everyone agrees on.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Type</div>
+        <div class="hero-meta-value">Concept · Consumer AI</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Deliverables</div>
+        <div class="hero-meta-value">PRD + Live Interactive Prototype</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">AI Approach</div>
+        <div class="hero-meta-value">Agentic Consensus Engine</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Year</div>
+        <div class="hero-meta-value">2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PROBLEM -->
+  <div class="section">
+    <div class="section-label">The Problem</div>
+    <h2>Group travel fails before anyone opens a booking site</h2>
+    <p>Individual trip planning tools are abundant. But coordinating trips with friends remains messy — spread across group chats, shared docs, and endless indecision. The real pain point isn't a lack of options. It's a lack of convergence.</p>
+
+    <div class="insight">
+      <p>"Group travel fails not from <em>lack of options</em> — but from lack of a clear convergence mechanism. The product's job is not to generate an itinerary. It's to get five people to agree on one."</p>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-label">Primary User — Trip Organizer</div>
+        <h4>Carries the coordination burden</h4>
+        <p>Initiates the trip, aggregates preferences manually, manages competing opinions, and absorbs social responsibility for the final plan. Wants consensus without becoming an unpaid travel agent.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Secondary User — Participant</div>
+        <h4>Has opinions, low tolerance for process</h4>
+        <p>Wants input without administrative burden. Will engage if friction is low — a quick vote, a simple reaction — but disengages from multi-step planning threads entirely.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY NOW -->
+  <div class="section">
+    <div class="section-label">Why Now</div>
+    <h2>Three forces converging</h2>
+    <div class="pills" style="margin-bottom:20px;">
+      <span class="pill teal">AI Infrastructure Maturity</span>
+      <span class="pill teal">Post-Pandemic Travel Surge</span>
+      <span class="pill teal">Unowned Market Gap</span>
+    </div>
+    <p>Large language models can now synthesize destination knowledge, activity sequencing, and group preference signals into coherent itineraries in seconds. Post-pandemic group travel intent has surged, yet tooling hasn't kept pace. And no dominant product owns the pre-decision, multi-stakeholder coordination layer — existing tools optimize for individual planning or post-booking organization.</p>
+  </div>
+
+  <!-- PRODUCT VISION -->
+  <div class="section">
+    <div class="section-label">Product Vision</div>
+    <h2>The AI Trip Concierge — a decision facilitator, not a generator</h2>
+
+    <div class="callout">
+      <div class="callout-label">Core Design Philosophy</div>
+      <p>The AI Concierge is positioned as <strong>co-pilot to the organizer, not autonomous driver</strong>. In group travel, the organizer carries social accountability to the group. An agent that overrides rather than advises would undermine that trust. The AI earns its place by making the organizer's job easier — not by replacing their judgment.</p>
+    </div>
+
+    <h3>The MVP Core Loop</h3>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Trip Creation</h4>
+          <p>Organizer inputs destination, dates, group size, vibe, and budget. Intentionally lightweight — the AI does the heavy lifting, not the form.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>AI Itinerary Generation</h4>
+          <p>Agent generates a day-by-day itinerary in under 8 seconds, sequenced by neighborhood and calibrated for vibe and budget. Organizer can swap or add activities before sharing.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Share via Link</h4>
+          <p>Organizer shares a link — no app download, no account required for participants. Friction reduction here is critical: this is where group participation typically dies.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Group Voting</h4>
+          <p>Participants react: Excited / Neutral / Pass per activity. The AI weights these asymmetrically — strong Excited signals carry more weight than soft neutral majorities, prioritizing genuine enthusiasm over the absence of objection.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h4>AI Consensus Resolution</h4>
+          <p>When votes split, the agent surfaces a justified alternative — not just a replacement, but an explanation rooted in group preference patterns. The organizer retains override capability at every step.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENT BEHAVIOR -->
+  <div class="section">
+    <div class="section-label">Agentic Design</div>
+    <h2>What makes this agentic — not just AI-assisted</h2>
+    <p>The distinction matters. Most "AI travel tools" are generators. This product is a decision facilitator. The agent maintains state across the session:</p>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="card-label">Group Preference State</div>
+        <h4>Tracks signals, not just votes</h4>
+        <p>Builds a preference vector per participant from vibe inputs and vote patterns. Detects category-level signals: "most of your group is preferring food experiences over monuments."</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Conflict Detection</div>
+        <h4>Distinguishes split from soft majority</h4>
+        <p>Treats a genuine 3/3 split differently from a 4/2 soft majority. Only intervenes where it adds value — doesn't over-engineer low-conflict decisions.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Weighted Signal Processing</div>
+        <h4>Excited > Neutral consensus</h4>
+        <p>A trip built on "nobody objected" is worse than one built on "several people were excited." The agent prioritizes genuine enthusiasm in its resolution logic.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Iterative Refinement</div>
+        <h4>Learns from vote feedback</h4>
+        <p>Can regenerate specific days rather than the full itinerary, using accumulated votes as a feedback signal. Always explains its reasoning in plain language.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="section">
+    <div class="section-label">Success Metrics</div>
+    <h2>Measuring the right thing</h2>
+
+    <div class="callout">
+      <div class="callout-label">North Star Metric</div>
+      <p><strong>Trip Consensus Rate</strong> — the percentage of initiated group planning sessions that result in a shared itinerary with at least 60% of participants voting within 48 hours. Ties engagement, completion, and value delivery in a single metric.</p>
+    </div>
+
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Definition</th>
+          <th>MVP Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Organizer Activation</td>
+          <td>% of sign-ups who generate an itinerary in first session</td>
+          <td>&gt; 70%</td>
+        </tr>
+        <tr>
+          <td>Participant Vote Rate</td>
+          <td>% of invited participants who cast at least one vote</td>
+          <td>&gt; 50%</td>
+        </tr>
+        <tr>
+          <td>Time-to-Consensus</td>
+          <td>Median time from trip creation to agreed itinerary</td>
+          <td>&lt; 48 hrs</td>
+        </tr>
+        <tr>
+          <td>Itinerary Edit Rate</td>
+          <td>% of AI itineraries modified before sharing</td>
+          <td>30–60%</td>
+        </tr>
+        <tr>
+          <td>7-Day Return Rate</td>
+          <td>% of organizers who return for a new trip within 7 days</td>
+          <td>&gt; 30%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TRADEOFFS -->
+  <div class="section">
+    <div class="section-label">Key Decisions & Trade-offs</div>
+    <h2>What I chose and why</h2>
+
+    <div class="tradeoff">
+      <h4>🎯 Booking scoped out of MVP</h4>
+      <p>The brief referenced "trip booked" as an end state. I intentionally stopped at consensus — the highest-friction moment in group travel isn't finding flights, it's getting five people to agree on anything. Booking is a downstream problem, and integrating it in MVP would obscure the signal on whether the core consensus mechanic is working. Booking integrations are scoped to Phase 3.</p>
+    </div>
+    <div class="tradeoff">
+      <h4>🔗 Guest voting over required sign-up</h4>
+      <p>Requiring participant accounts before voting would kill the participation rate that makes the product valuable. MVP launches with link-based guest voting — account creation is incentivized post-voting with a "see your travel style profile" value proposition.</p>
+    </div>
+    <div class="tradeoff">
+      <h4>🤖 AI as co-pilot, not autonomous driver</h4>
+      <p>The organizer carries social accountability to their group. An agent that finalizes plans without human override would undermine the trust the product is trying to build. The AI always explains its reasoning; the organizer always retains the final call.</p>
+    </div>
+    <div class="tradeoff">
+      <h4>⚡ Speed over depth at generation</h4>
+      <p>Generating in under 8 seconds requires lightweight inputs rather than rich preference history. This is the right MVP trade-off — the blank-page problem is the biggest friction point, and a fast useful draft beats a slow perfect one for driving adoption.</p>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="section">
+    <div class="section-label">Roadmap</div>
+    <h2>MVP to full product lifecycle</h2>
+    <div class="roadmap">
+      <div class="roadmap-phase">
+        <span class="roadmap-tag mvp">MVP</span>
+        <div class="roadmap-content">
+          <h4>Months 0–3 · Validate the core loop</h4>
+          <p>AI itinerary generation, shareable link, Excited/Neutral/Pass voting, AI split-vote resolution, activity swap, PDF export.</p>
+        </div>
+      </div>
+      <div class="roadmap-phase">
+        <span class="roadmap-tag p2">Phase 2</span>
+        <div class="roadmap-content">
+          <h4>Months 3–6 · Build retention and preference data</h4>
+          <p>User accounts and trip history, group preference profiles (AI learns from past votes), calendar integration (Google/Apple), real-time collaborative editing.</p>
+        </div>
+      </div>
+      <div class="roadmap-phase">
+        <span class="roadmap-tag p3">Phase 3</span>
+        <div class="roadmap-content">
+          <h4>Months 6–12 · Monetization</h4>
+          <p>Booking integrations (hotels, flights, activities via affiliate), AI budget optimizer, group expense splitting, multi-destination trip support.</p>
+        </div>
+      </div>
+      <div class="roadmap-phase">
+        <span class="roadmap-tag p4">Phase 4</span>
+        <div class="roadmap-content">
+          <h4>Months 12–18 · Network effects</h4>
+          <p>Social layer: public trip inspiration feed, community-sourced itinerary templates, AI Concierge trained on aggregated preference data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROTOTYPE CTA -->
+  <div class="prototype-cta">
+    <h3>See the prototype in action</h3>
+    <p>An interactive demo of the full core loop — trip creation, AI generation, organizer review, sharing, participant voting, and AI-brokered consensus.</p>
+    <a href="https://nilanjana281.github.io/group-trip-planner" class="prototype-btn" target="_blank">
+      ✦ Launch Interactive Prototype
+    </a>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="section">
+    <div class="section-label">Reflection</div>
+    <h2>What this project demonstrates</h2>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">1<span>✦</span></div>
+        <div class="stat-label">Core insight sharpened before any feature was defined</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5<span>+</span></div>
+        <div class="stat-label">Explicit assumptions documented with validation approaches</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4<span>→</span></div>
+        <div class="stat-label">Trade-offs reasoned and documented, not buried</div>
+      </div>
+    </div>
+    <p>This project was an exercise in navigating ambiguity — taking a loose brief and turning it into a sharp product position, a structured PRD, and a working interactive prototype. The prototype is deliberately not a static mockup: it exists to make the decision-facilitation model tangible, not just described.</p>
+    <div class="pills">
+      <span class="pill navy">Agentic AI Design</span>
+      <span class="pill navy">Consumer Product</span>
+      <span class="pill navy">PRD Writing</span>
+      <span class="pill navy">Interactive Prototyping</span>
+      <span class="pill navy">Trade-off Analysis</span>
+      <span class="pill navy">Metrics Definition</span>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Nilanjana Chatterjee · Senior Product Manager · <a href="https://nilanjana281.github.io">Portfolio</a> · <a href="https://www.linkedin.com/in/nilanjana-chatterjee">LinkedIn</a></p>
+</footer>
+
+</body>
+</html>
